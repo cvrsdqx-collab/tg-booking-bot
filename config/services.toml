@@ -1,0 +1,24 @@
+# Услуги и график. Меняются без правки кода — после изменения перезапустите бота.
+
+[schedule]
+opens = "10:00"
+closes = "20:00"
+step_minutes = 30        # шаг сетки окон
+days_ahead = 7           # на сколько дней вперёд открыта запись
+days_off = [6]           # выходные: 0 — пн … 6 — вс
+min_lead_minutes = 60    # записаться можно не позже чем за час до начала
+
+[services.haircut]
+title = "Стрижка"
+minutes = 60
+price = 1500
+
+[services.beard]
+title = "Оформление бороды"
+minutes = 30
+price = 800
+
+[services.combo]
+title = "Стрижка + борода"
+minutes = 90
+price = 2100
