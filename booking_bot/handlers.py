@@ -138,7 +138,7 @@ async def choose_service(query: CallbackQuery, callback_data: ServiceCb, state: 
     await state.set_data({"service": service.code})
     days = booking_days(catalog.schedule, local_now(settings).date())
     await edit(query, f"{html.quote(service.title)}, {service.minutes} мин. Выберите день:",
-                                  reply_markup=days_keyboard(days))
+         reply_markup=days_keyboard(days))
     await query.answer()
 
 
@@ -151,14 +151,14 @@ async def choose_day(query: CallbackQuery, callback_data: DayCb, state: FSMConte
     if service is None or moment is None or moment.date() not in booking_days(catalog.schedule, now.date()):
         await query.answer("Начните заново: /start", show_alert=True)
         return
+    day = moment.date()
     slots = free_slots(catalog.schedule, day, service.minutes, repo.busy_intervals(day), now)
     if not slots:
         await query.answer("На этот день свободных окон нет — выберите другой", show_alert=True)
         return
-    day = moment.date()
     await state.update_data(day=callback_data.value)
     await edit(query, f"{WEEKDAYS[day.weekday()]} {day:%d.%m}. Свободное время:",
-                                  reply_markup=slots_keyboard(slots))
+         reply_markup=slots_keyboard(slots))
     await query.answer()
 
 

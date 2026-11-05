@@ -2,6 +2,13 @@
 
 Демо-проект: Telegram-бот, через который клиенты сами записываются на услугу, например в барбершоп, салон или к мастеру. Звонить и переписываться для этого не нужно.
 
+## Как это выглядит
+| Выбор времени | Подтверждение | Запись, уведомление владельцу, «Мои записи» |
+|---|---|---|
+| ![Свободное время](docs/screenshots/1-time-slots.png) | ![Подтверждение](docs/screenshots/2-confirm.png) | ![Готово](docs/screenshots/3-booked-and-owner-notice.png) |
+
+На скриншотах демо-данные. Владелец бота здесь сам выступает клиентом, поэтому уведомление «Новая запись» пришло в тот же чат.
+
 ## Что умеет
 **Клиенту:**
 - выбрать услугу, день и свободное время;
@@ -28,14 +35,15 @@ booking_bot/
   handlers.py   — диалог в Telegram
   config.py     — настройки из окружения / .env
 config/services.toml — услуги и график
-tests/          — 28 тестов
+tests/          — 29 тестов
 ```
 
 ## Запуск
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-cp .env.example .env        # вставьте BOT_TOKEN от @BotFather и свой ADMIN_IDS
+cp .env.example .env        # впишите свой ADMIN_IDS
+./scripts/set_token.sh      # скрытый ввод токена от @BotFather
 .venv/bin/python -m booking_bot
 ```
 
